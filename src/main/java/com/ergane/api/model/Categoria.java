@@ -19,5 +19,6 @@ public class Categoria {
     private String id;
 
     private String nome;
+    private String usuarioId;
 
 }

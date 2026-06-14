@@ -27,5 +27,6 @@ public class Produto {
     private Integer estoque;
     private List<String> categorias;
     private String descricao;
+    private String usuarioId;
 
 }

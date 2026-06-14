@@ -22,6 +22,7 @@ public class Venda {
     @MongoId(FieldType.OBJECT_ID)
     private String id;
 
+    private String usuarioId;
     private String nomeCliente;
     private String cpfCliente;
     private String metodoPagamento;
