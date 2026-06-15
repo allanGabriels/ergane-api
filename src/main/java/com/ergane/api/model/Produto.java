@@ -1,17 +1,18 @@
 package com.ergane.api.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.data.mongodb.core.mapping.FieldType;
 import org.springframework.data.mongodb.core.mapping.MongoId;
 
 import java.math.BigDecimal;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
+@ToString
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -21,12 +22,29 @@ public class Produto {
     @MongoId(FieldType.OBJECT_ID)
     private String id;
 
+    @Indexed
+    @Field("nome")
     private String nome;
+
+    @Field(name = "preco", targetType = FieldType.DECIMAL128)
     private BigDecimal preco;
+
+    @Field(name = "custo_producao", targetType = FieldType.DECIMAL128)
     private BigDecimal custoProducao;
+
+    @Field("estoque")
     private Integer estoque;
-    private List<String> categorias;
+
+    @Singular
+    @Indexed
+    @Field("categorias")
+    private List<CategoriaResumo> categorias;
+
+    @Field("descricao")
     private String descricao;
+
+    @Indexed
+    @Field("usuario_id")
     private String usuarioId;
 
 }
