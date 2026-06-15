@@ -37,4 +37,16 @@ public class ErganeApiApplication {
 			}
 		};
 	}
+
+	@Bean
+public CorsConfigurationSource corsConfigurationSource() {
+    CorsConfiguration configuration = new CorsConfiguration();
+    // Permite que qualquer origem acesse a API (na apresentação, isso resolve 100% dos problemas de CORS)
+    configuration.setAllowedOrigins(Arrays.asList("*")); 
+    configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+    configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type", "Accept"));
+    
+    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+    source.registerCorsConfiguration("/**", configuration);
+    return source;
 }
